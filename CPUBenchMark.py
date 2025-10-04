@@ -76,8 +76,8 @@ class BenchmarkApp(QWidget):
 
         cpu_name = get_cpu_name()
         print(cpu_name)
-        benchmarks[cpu_name] = normalized_score
-        #benchmarks["Your CPU"] = normalized_score
+        #benchmarks[cpu_name] = normalized_score
+        benchmarks["Your CPU"] = normalized_score
 
         labels = list(benchmarks.keys())
         scores = list(benchmarks.values())
@@ -91,12 +91,12 @@ class BenchmarkApp(QWidget):
                 colors.append("blue")
             else:
                 colors.append("gray")
-
+                
         ax.bar(range(len(scores)), scores, color=colors)
         ax.set_xticks(range(len(labels)))
         ax.set_xticklabels(labels, rotation=30, ha='right')
         ax.set_ylabel("Benchmark Score")
-        ax.set_title("CPU Performance Comparison")
+        ax.set_title(f"CPU Performance Comparison\nYour CPU: {cpu_name}")
         ax.set_ylim(0, max_ref_score * 1.2)
 
         for i, v in enumerate(scores):
